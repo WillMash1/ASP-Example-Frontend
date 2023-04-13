@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from './employee';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class EmployeeService {
     return this.http.get<Employee[]>(`${this.apiServerUrl}/employee/all`);
   }
 
-  public addEmployees(employee: Employee): Observable<Employee> {
+  public addEmployee(employee: Employee): Observable<Employee> {
     return this.http.post<Employee>(
       `${this.apiServerUrl}/employee/add`,
       employee
@@ -30,7 +30,9 @@ export class EmployeeService {
     );
   }
 
-  public deleteEmployees(employeeId: number): Observable<void> {
+  public deleteEmployees(
+    employeeId: number | undefined | null
+  ): Observable<void> {
     return this.http.delete<void>(
       `${this.apiServerUrl}/employee/delete/${employeeId}`
     );
