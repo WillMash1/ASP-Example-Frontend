@@ -79,19 +79,21 @@ export class AppComponent implements OnInit {
     const button = document.createElement('button');
     button.type = 'button';
     button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-bs-toggle', 'modal');
     if (mode === 'add') {
-      button.setAttribute('data-target', '#addEmployeeModal');
+      button.setAttribute('data-bs-target', '#addEmployeeModal');
+      console.log('Click!!!!');
     }
     if (mode === 'edit') {
       this.editEmployee = employee;
-      button.setAttribute('data-target', '#updateEmployeeModal');
+      button.setAttribute('data-bs-target', '#updateEmployeeModal');
     }
     if (mode === 'delete') {
       this.deleteEmployee = employee;
-      button.setAttribute('data-target', '#deleteEmployeeModal');
+      button.setAttribute('data-bs-target', '#deleteEmployeeModal');
     }
     container?.appendChild(button);
     button.click();
+    container?.removeChild(button);
   }
 }
